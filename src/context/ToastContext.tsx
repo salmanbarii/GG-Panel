@@ -99,6 +99,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     [notify],
   );
 
+  const clearNotifications = useCallback(() => setNotifications([]), []);
+
   const value = useMemo<ToastContextValue>(
     () => ({
       toasts,
@@ -108,9 +110,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       error,
       info,
       dismiss,
-      clearNotifications: () => setNotifications([]),
+      clearNotifications,
     }),
-    [toasts, notifications, notify, success, error, info, dismiss],
+    [toasts, notifications, notify, success, error, info, dismiss, clearNotifications],
   );
 
   return (
