@@ -176,6 +176,7 @@
     font-family:
       'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     overscroll-behavior: none;
+    overflow-x: hidden;
   }
 
   ::selection {

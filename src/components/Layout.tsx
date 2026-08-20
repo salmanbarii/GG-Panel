@@ -34,7 +34,7 @@ export function Layout() {
   }, []);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden">
       <GlobalBackground />
 
       <Sidebar
@@ -43,7 +43,7 @@ export function Layout() {
         onNavigate={() => setMobileOpen(false)}
       />
 
-      <div className="flex min-h-screen flex-1 flex-col md:ml-64">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-white/5 bg-zinc-950/70 px-4 py-3 backdrop-blur-xl sm:px-6">
           <button
             type="button"
@@ -89,7 +89,7 @@ export function Layout() {
           </button>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>
