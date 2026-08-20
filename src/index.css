@@ -1,0 +1,320 @@
+@import 'tailwindcss';
+
+/*
+ * JTG Panel theming
+ * -----------------
+ * The whole panel is recoloured from a single admin setting. Tailwind v4 theme
+ * tokens point at plain CSS variables (`--theme-*`) which are re-declared by the
+ * `.theme-<family>` class applied to <html> by SettingsContext. That means both
+ * utilities (`bg-theme-500`, `text-theme-400`) and raw CSS
+ * (`var(--color-theme-500)`) follow the selected colour family.
+ */
+
+@theme {
+  --color-theme-50: var(--theme-50);
+  --color-theme-100: var(--theme-100);
+  --color-theme-200: var(--theme-200);
+  --color-theme-300: var(--theme-300);
+  --color-theme-400: var(--theme-400);
+  --color-theme-500: var(--theme-500);
+  --color-theme-600: var(--theme-600);
+  --color-theme-700: var(--theme-700);
+  --color-theme-800: var(--theme-800);
+  --color-theme-900: var(--theme-900);
+  --color-theme-950: var(--theme-950);
+  --color-theme-rgb: var(--theme-rgb);
+
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    monospace;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 40s linear infinite;
+  --animate-ticker: ticker 30s linear infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+/* ── colour families ─────────────────────────────────────────────────────── */
+:root,
+.theme-red {
+  --theme-50: #fef2f2;
+  --theme-100: #fee2e2;
+  --theme-200: #fecaca;
+  --theme-300: #fca5a5;
+  --theme-400: #f87171;
+  --theme-500: #ef4444;
+  --theme-600: #dc2626;
+  --theme-700: #b91c1c;
+  --theme-800: #991b1b;
+  --theme-900: #7f1d1d;
+  --theme-950: #450a0a;
+  --theme-rgb: 239 68 68;
+}
+
+.theme-blue {
+  --theme-50: #eff6ff;
+  --theme-100: #dbeafe;
+  --theme-200: #bfdbfe;
+  --theme-300: #93c5fd;
+  --theme-400: #60a5fa;
+  --theme-500: #3b82f6;
+  --theme-600: #2563eb;
+  --theme-700: #1d4ed8;
+  --theme-800: #1e40af;
+  --theme-900: #1e3a8a;
+  --theme-950: #172554;
+  --theme-rgb: 59 130 246;
+}
+
+.theme-green {
+  --theme-50: #f0fdf4;
+  --theme-100: #dcfce7;
+  --theme-200: #bbf7d0;
+  --theme-300: #86efac;
+  --theme-400: #4ade80;
+  --theme-500: #22c55e;
+  --theme-600: #16a34a;
+  --theme-700: #15803d;
+  --theme-800: #166534;
+  --theme-900: #14532d;
+  --theme-950: #052e16;
+  --theme-rgb: 34 197 94;
+}
+
+.theme-purple {
+  --theme-50: #faf5ff;
+  --theme-100: #f3e8ff;
+  --theme-200: #e9d5ff;
+  --theme-300: #d8b4fe;
+  --theme-400: #c084fc;
+  --theme-500: #a855f7;
+  --theme-600: #9333ea;
+  --theme-700: #7e22ce;
+  --theme-800: #6b21a8;
+  --theme-900: #581c87;
+  --theme-950: #3b0764;
+  --theme-rgb: 168 85 247;
+}
+
+.theme-orange {
+  --theme-50: #fff7ed;
+  --theme-100: #ffedd5;
+  --theme-200: #fed7aa;
+  --theme-300: #fdba74;
+  --theme-400: #fb923c;
+  --theme-500: #f97316;
+  --theme-600: #ea580c;
+  --theme-700: #c2410c;
+  --theme-800: #9a3412;
+  --theme-900: #7c2d12;
+  --theme-950: #431407;
+  --theme-rgb: 249 115 22;
+}
+
+.theme-cyan {
+  --theme-50: #ecfeff;
+  --theme-100: #cffafe;
+  --theme-200: #a5f3fc;
+  --theme-300: #67e8f9;
+  --theme-400: #22d3ee;
+  --theme-500: #06b6d4;
+  --theme-600: #0891b2;
+  --theme-700: #0e7490;
+  --theme-800: #155e75;
+  --theme-900: #164e63;
+  --theme-950: #083344;
+  --theme-rgb: 6 182 212;
+}
+
+.theme-pink {
+  --theme-50: #fdf2f8;
+  --theme-100: #fce7f3;
+  --theme-200: #fbcfe8;
+  --theme-300: #f9a8d4;
+  --theme-400: #f472b6;
+  --theme-500: #ec4899;
+  --theme-600: #db2777;
+  --theme-700: #be185d;
+  --theme-800: #9d174d;
+  --theme-900: #831843;
+  --theme-950: #500724;
+  --theme-rgb: 236 72 153;
+}
+
+.theme-zinc {
+  --theme-50: #fafafa;
+  --theme-100: #f4f4f5;
+  --theme-200: #e4e4e7;
+  --theme-300: #d4d4d8;
+  --theme-400: #a1a1aa;
+  --theme-500: #71717a;
+  --theme-600: #52525b;
+  --theme-700: #3f3f46;
+  --theme-800: #27272a;
+  --theme-900: #18181b;
+  --theme-950: #09090b;
+  --theme-rgb: 113 113 122;
+}
+
+/* ── base ────────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: color-mix(in oklab, white 10%, transparent);
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family:
+      'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    overscroll-behavior: none;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-theme-500) 40%, transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, white 12%, transparent);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--color-theme-500) 55%, transparent);
+    background-clip: content-box;
+  }
+
+  input,
+  textarea,
+  select {
+    color-scheme: dark;
+  }
+}
+
+/* ── reusable panel primitives ───────────────────────────────────────────── */
+@utility glass {
+  background-color: color-mix(in oklab, white 5%, transparent);
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+@layer components {
+  .panel-card {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .panel-input {
+    @apply w-full rounded-xl border border-white/10 bg-black/40 px-3.5 py-2.5 text-sm text-zinc-100
+      placeholder:text-zinc-500 outline-none transition
+      focus:border-theme-500/60 focus:ring-2 focus:ring-theme-500/20;
+  }
+
+  .panel-label {
+    @apply mb-1.5 block text-xs font-medium tracking-wide text-zinc-400 uppercase;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px color-mix(in oklab, var(--color-theme-500) 55%, transparent);
+  }
+}
+
+@utility panel-btn {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm
+    font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility panel-btn-primary {
+  @apply panel-btn bg-theme-600 text-white shadow-lg shadow-theme-600/20 hover:bg-theme-500;
+}
+
+@utility panel-btn-ghost {
+  @apply panel-btn border border-white/10 bg-white/5 text-zinc-200 hover:bg-white/10;
+}
+
+@utility panel-btn-danger {
+  @apply panel-btn border border-red-500/30 bg-red-500/10 text-red-300 hover:bg-red-500/20;
+}
+
+@utility panel-btn-active {
+  @apply panel-btn border border-theme-500/40 bg-theme-500/15 text-theme-200;
+}
+
+/* ── keyframes ───────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
