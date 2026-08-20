@@ -167,9 +167,6 @@ export class DockerRuntimeProvider implements RuntimeProvider {
       await existing.remove({ force: true }).catch(() => undefined);
     }
 
-    const gamePort = `${server.port}/tcp`;
-    const rconPort = `${server.port + 10}/tcp`;
-
     const container = await getDocker().createContainer({
       name: containerName(server),
       Image: config.dockerImage,
@@ -185,18 +182,8 @@ export class DockerRuntimeProvider implements RuntimeProvider {
         'jtg.serverId': server.id,
         'jtg.serverName': server.name,
       },
-      ExposedPorts: {
-        [gamePort]: {},
-        [`${server.port}/udp`]: {},
-        [rconPort]: {},
-      },
       HostConfig: {
         Binds: [`${dir}:/data`],
-        PortBindings: {
-          [gamePort]: [{ HostPort: String(server.port) }],
-          [`${server.port}/udp`]: [{ HostPort: String(server.port) }],
-          [rconPort]: [{ HostPort: String(server.port + 10) }],
-        },
         Memory: Math.round(server.ram * 1024 * 1024 * 1024),
         MemorySwap: Math.round(server.ram * 1024 * 1024 * 1024),
         NanoCpus: Math.max(1, Math.round((server.cpu / 100) * 1e9)),
