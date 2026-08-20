@@ -7,6 +7,7 @@ import { canAccessServer, findServer } from './services/serverStore.js';
 import { getRuntime } from './runtime/runtimeFactory.js';
 import { panelEvents } from './utils/panelEvents.js';
 import { getUpdateStatus } from './services/updateService.js';
+import { startLiveBroadcast } from './services/liveBroadcast.js';
 
 /**
  * Socket.IO layer. Clients authenticate with the same JWT used by the REST API,
@@ -175,6 +176,8 @@ export function createSocketServer(httpServer: HttpServer): SocketIOServer {
   panelEvents.onTyped('notification', (payload) => {
     io.emit('notification', payload);
   });
+
+  startLiveBroadcast(io);
 
   return io;
 }

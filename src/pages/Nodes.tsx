@@ -9,6 +9,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useToast, useAsyncAction } from '@/context/ToastContext';
 import { api, errorMessage } from '@/lib/api';
 import { cn, timeAgo } from '@/lib/format';
+import { useSocketEvent } from '@/hooks/useSocketEvent';
 import type { PanelNode } from '@/types';
 
 interface WingsNodeInfo {
@@ -67,6 +68,11 @@ export default function NodesPage() {
   useEffect(() => {
     void refresh();
   }, [refresh]);
+
+  // Live node inventory pushed over Socket.IO.
+  useSocketEvent<PanelNode[]>('nodes', (next) => {
+    setNodes(next);
+  });
 
   const handleAddNode = useCallback(async () => {
     if (!nodeName.trim() || !nodeHost.trim()) return;

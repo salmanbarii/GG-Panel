@@ -32,6 +32,7 @@ import {
 import { api, errorMessage } from '@/lib/api';
 import { useAuth } from '@/context/AuthContext';
 import { useToast, useAsyncAction } from '@/context/ToastContext';
+import { getSocket } from '@/lib/socket';
 import { Modal, ConfirmDialog } from '@/components/Modal';
 import { PremiumLoader, Spinner, LoadingOverlay } from '@/components/Loaders';
 import { StatCard, UsageBar } from '@/components/StatCard';
@@ -45,7 +46,7 @@ import {
   softwareLabel,
   copyToClipboard,
 } from '@/lib/format';
-import type { GameServerView, ServerStats, PlayitTunnel } from '@/types';
+import type { GameServerView, ServerStats, PlayitTunnel, ServerStatus } from '@/types';
 
 import { ServerConsole } from '@/components/ServerConsole';
 import { FileManager } from '@/components/FileManager';
@@ -131,6 +132,32 @@ export default function ServerView() {
     }, 3000);
     return () => clearInterval(timer);
   }, [refreshStats]);
+
+  // Live per-server usage pushed over Socket.IO. Joining the room at the page
+  // level (not just the console tab) keeps stats + status live on every tab.
+  useEffect(() => {
+    if (!id) return;
+    const socket = getSocket();
+    socket.emit('joinServer', id);
+
+    const onStats = (payload: ServerStats & { serverId: string }) => {
+      if (payload.serverId === id) setStats(payload);
+    };
+    const onStatus = (payload: { serverId: string; status: ServerStatus }) => {
+      if (payload.serverId === id) {
+        setServer((curr) => (curr ? { ...curr, status: payload.status } : curr));
+      }
+    };
+
+    socket.on('serverStats', onStats);
+    socket.on('status', onStatus);
+
+    return () => {
+      socket.off('serverStats', onStats);
+      socket.off('status', onStatus);
+      socket.emit('leaveServer', id);
+    };
+  }, [id]);
 
   const handlePower = async (action: 'start' | 'stop' | 'restart') => {
     if (!id) return;

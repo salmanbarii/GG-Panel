@@ -10,6 +10,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useSettings } from '@/context/SettingsContext';
 import { useToast } from '@/context/ToastContext';
 import { api, errorMessage } from '@/lib/api';
+import { useSocketEvent } from '@/hooks/useSocketEvent';
 import type { GameServerView, SystemStats } from '@/types';
 
 interface Totals {
@@ -56,6 +57,11 @@ export default function DashboardPage() {
   useEffect(() => {
     void refresh();
   }, [refresh]);
+
+  // Live panel host resources pushed over Socket.IO.
+  useSocketEvent<SystemStats>('systemStats', (stats) => {
+    setSystem((curr) => ({ ...curr, ...stats }));
+  });
 
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',
