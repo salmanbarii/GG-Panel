@@ -40,7 +40,7 @@ export function extractToken(req: Request): string | undefined {
 
 /**
  * Accepts either a JWT (`Authorization: Bearer <jwt>`) or a panel API key
- * (`X-API-Key: jtg_...`). API keys resolve to their owning user plus scopes.
+ * (`X-API-Key: gg_...`). API keys resolve to their owning user plus scopes.
  */
 export async function requireAuth(
   req: AuthedRequest,

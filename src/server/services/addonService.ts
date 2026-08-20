@@ -13,7 +13,7 @@ import { sanitizeFilename } from '../utils/fsUtils.js';
  */
 
 const MODRINTH_API = 'https://api.modrinth.com/v2';
-const USER_AGENT = 'JTG-Panel/1.0 (server-management-panel)';
+const USER_AGENT = 'GG-Panel/1.0 (server-management-panel)';
 
 export type AddonKind = 'plugin' | 'mod';
 

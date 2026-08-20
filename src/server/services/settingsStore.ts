@@ -6,7 +6,7 @@ import { config } from '../utils/config.js';
 
 export function defaultSettings(): PanelSettings {
   return {
-    panelName: 'JTG Panel',
+    panelName: 'GG Panel',
     panelLogo: '',
     panelBackgroundImage: '',
     panelBackgroundBlur: 8,

@@ -41,7 +41,7 @@ export async function isDockerAvailable(force = false): Promise<boolean> {
 }
 
 export function containerName(server: GameServer): string {
-  return `jtg-${server.id.slice(0, 12)}`;
+  return `gg-${server.id.slice(0, 12)}`;
 }
 
 /** itzg/minecraft-server TYPE value for each supported software. */
@@ -74,9 +74,9 @@ async function buildEnv(server: GameServer): Promise<string[]> {
     MAX_MEMORY: `${memoryMb}M`,
     SERVER_PORT: String(server.port),
     ENABLE_RCON: 'true',
-    RCON_PASSWORD: 'jtgpanel',
+    RCON_PASSWORD: 'ggpanel',
     RCON_PORT: String(server.port + 10),
-    MOTD: `${server.name} — powered by JTG Panel`,
+    MOTD: `${server.name} — powered by GG Panel`,
     OVERRIDE_SERVER_PROPERTIES: 'false',
     SKIP_SUDO: 'true',
     UID: String(process.getuid?.() ?? 1000),
@@ -178,9 +178,9 @@ export class DockerRuntimeProvider implements RuntimeProvider {
       AttachStdout: true,
       AttachStderr: true,
       Labels: {
-        'jtg.panel': 'true',
-        'jtg.serverId': server.id,
-        'jtg.serverName': server.name,
+        'gg.panel': 'true',
+        'gg.serverId': server.id,
+        'gg.serverName': server.name,
       },
       HostConfig: {
         Binds: [`${dir}:/data`],

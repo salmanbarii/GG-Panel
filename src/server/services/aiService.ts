@@ -92,6 +92,6 @@ export async function suggestOptimizations(input: {
 export async function askAssistant(question: string, serverContext?: string): Promise<string> {
   return generate(
     serverContext ? `Server context:\n${serverContext}\n\nQuestion: ${question}` : question,
-    'You are the JTG Panel assistant. Help the user operate their game server. Prefer exact commands and file paths. Keep answers under 200 words unless asked for detail.',
+    'You are the GG Panel assistant. Help the user operate their game server. Prefer exact commands and file paths. Keep answers under 200 words unless asked for detail.',
   );
 }

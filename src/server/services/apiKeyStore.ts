@@ -48,7 +48,7 @@ export async function createApiKey(input: {
     throw Object.assign(new Error('At least one scope is required'), { statusCode: 400 });
   }
 
-  const raw = `jtg_${crypto.randomBytes(24).toString('hex')}`;
+  const raw = `gg_${crypto.randomBytes(24).toString('hex')}`;
   const record: ApiKey = {
     id: uuid(),
     name,

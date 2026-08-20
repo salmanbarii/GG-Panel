@@ -24,7 +24,7 @@ done
 if [[ "$YES" = true ]]; then
   info "Non-interactive mode — assuming confirmation."
 else
-  printf "${YEL}[uninstall]${RST} This will remove the JTG Panel service and build artifacts. "
+  printf "${YEL}[uninstall]${RST} This will remove the GG Panel service and build artifacts. "
   printf "Data in .data/ and .env will NOT be deleted.\n"
   read -rp "Continue? [y/N] " yn
   if ! [[ "$yn" =~ ^[Yy]$ ]]; then
@@ -33,23 +33,23 @@ else
 fi
 
 # ── pm2 ──────────────────────────────────────────────────────────────────────
-if pm2 list | grep -q "jtg-panel"; then
-  info "Stopping and deleting jtg-panel from pm2..."
-  pm2 delete jtg-panel
+if pm2 list | grep -q "gg-panel"; then
+  info "Stopping and deleting gg-panel from pm2..."
+  pm2 delete gg-panel
   pm2 save
   ok "pm2 process removed"
 else
-  warn "pm2 process 'jtg-panel' not found — skipping."
+  warn "pm2 process 'gg-panel' not found — skipping."
 fi
 
 # ── docker containers ────────────────────────────────────────────────────────
-info "Scanning for jtg-* Docker containers..."
-CONTAINERS="$(docker ps -aq --filter "name=^jtg-" --filter "label=jtg.panel=true" 2>/dev/null || echo "")"
+info "Scanning for gg-* Docker containers..."
+CONTAINERS="$(docker ps -aq --filter "name=^gg-" --filter "label=gg.panel=true" 2>/dev/null || echo "")"
 if [[ -n "$CONTAINERS" ]]; then
   if [[ "$YES" = true ]]; then
     STOP_DOCKER=true
   else
-    read -rp "Stop and remove Docker containers matching jtg-* (label jtg.panel=true)? [y/N] " yn
+    read -rp "Stop and remove Docker containers matching gg-* (label gg.panel=true)? [y/N] " yn
     STOP_DOCKER=false
     [[ "$yn" =~ ^[Yy]$ ]] && STOP_DOCKER=true
   fi

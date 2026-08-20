@@ -186,8 +186,8 @@ export async function startSftpServer(): Promise<SftpServerHandle | null> {
   const server = new SSHServer(
     {
       hostKeys: [hostKey],
-      banner: 'JTG Panel SFTP',
-      ident: 'JTG-Panel-SFTP',
+      banner: 'GG Panel SFTP',
+      ident: 'GG-Panel-SFTP',
     },
     (client) => {
       let sftpUser: SftpUser | null = null;

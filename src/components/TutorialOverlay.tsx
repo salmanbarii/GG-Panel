@@ -30,12 +30,12 @@ export function TutorialOverlay() {
 
   useEffect(() => {
     if (!settings.enableTutorial) return;
-    if (localStorage.getItem('jtg_tutorial_seen') === '1') return;
+    if (localStorage.getItem('gg_tutorial_seen') === '1') return;
     setOpen(true);
   }, [settings.enableTutorial]);
 
   const close = () => {
-    localStorage.setItem('jtg_tutorial_seen', '1');
+    localStorage.setItem('gg_tutorial_seen', '1');
     setOpen(false);
   };
 

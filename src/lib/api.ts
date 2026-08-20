@@ -5,7 +5,7 @@ import axios, { AxiosError, type AxiosInstance } from 'axios';
  * bubbles a clean `message` up to the UI.
  */
 
-const TOKEN_KEY = 'jtg_token';
+const TOKEN_KEY = 'gg_token';
 
 export function getToken(): string | null {
   try {

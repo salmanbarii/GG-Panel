@@ -1,9 +1,9 @@
 {
-  "name": "jtg-panel",
+  "name": "gg-panel",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "JTG Panel — self-hosted game server management and container orchestration",
+  "description": "GG Panel — self-hosted game server management and container orchestration",
   "engines": {
     "node": ">=20"
   },

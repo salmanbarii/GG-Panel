@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
- * JTG Panel theming
+ * GG Panel theming
  * -----------------
  * The whole panel is recoloured from a single admin setting. Tailwind v4 theme
  * tokens point at plain CSS variables (`--theme-*`) which are re-declared by the

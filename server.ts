@@ -22,7 +22,7 @@ import { killAllLocalProcesses } from './src/server/runtime/local.js';
 import { stopAllTunnels } from './src/server/services/playitService.js';
 
 /**
- * JTG Panel — single unified server.
+ * GG Panel — single unified server.
  *   • Express REST API under /api
  *   • Socket.IO for console streaming
  *   • Vite middleware in dev, static dist/client in production
@@ -127,7 +127,7 @@ async function createApp() {
       }
       res
         .status(503)
-        .send('<h1>JTG Panel</h1><p>Frontend build missing. Run <code>npm run build</code>.</p>');
+        .send('<h1>GG Panel</h1><p>Frontend build missing. Run <code>npm run build</code>.</p>');
     });
   }
 
@@ -154,7 +154,7 @@ async function main(): Promise<void> {
 
   console.log('');
   console.log('  ╭───────────────────────────────────────────────╮');
-  console.log('  │            JTG Panel is running               │');
+  console.log('  │            GG Panel is running               │');
   console.log('  ╰───────────────────────────────────────────────╯');
   console.log(`  Panel      http://localhost:${config.port}`);
   console.log(`  Mode       ${config.isDev ? 'development' : 'production'}`);

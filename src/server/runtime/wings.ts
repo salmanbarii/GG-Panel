@@ -106,7 +106,7 @@ export class WingsRuntimeProvider implements RuntimeProvider {
       start_on_completion: false,
       settings: {
         uuid,
-        meta: { name: server.name, description: 'Created by JTG Panel' },
+        meta: { name: server.name, description: 'Created by GG Panel' },
         suspended: false,
         invocation: `java -Xms512M -Xmx${Math.round(server.ram * 1024)}M -jar server.jar nogui`,
         skip_egg_scripts: false,
@@ -124,7 +124,7 @@ export class WingsRuntimeProvider implements RuntimeProvider {
           mappings: { '0.0.0.0': [server.port] },
         },
         egg: {
-          id: 'jtg-generic',
+          id: 'gg-generic',
           file_denylist: [],
         },
       },

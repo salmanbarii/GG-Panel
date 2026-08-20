@@ -50,7 +50,7 @@ function parseArgs(): Args {
 
 function usage(): void {
   console.log(`
-JTG Panel — create user script
+GG Panel — create user script
 
 Usage:
   tsx scripts/createuser.ts [flags]

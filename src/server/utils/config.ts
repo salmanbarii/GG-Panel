@@ -29,7 +29,7 @@ function readPanelVersion(): string {
 export const config = {
   isDev,
   port: int(process.env.PORT, 6767),
-  jwtSecret: process.env.JWT_SECRET || 'jtg-panel-insecure-dev-secret',
+  jwtSecret: process.env.JWT_SECRET || 'gg-panel-insecure-dev-secret',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
   enableDocker: bool(process.env.ENABLE_DOCKER, true),
   dockerSocketPath: process.env.DOCKER_SOCKET_PATH || '/var/run/docker.sock',

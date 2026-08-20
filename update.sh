@@ -54,12 +54,12 @@ npm run build || die "npm run build failed"
 ok "Build complete"
 
 # ── restart pm2 if present ───────────────────────────────────────────────────
-if pm2 list | grep -q "jtg-panel"; then
-  info "Restarting jtg-panel via pm2..."
-  pm2 restart jtg-panel --update-env
+if pm2 list | grep -q "gg-panel"; then
+  info "Restarting gg-panel via pm2..."
+  pm2 restart gg-panel --update-env
   ok "pm2 restart triggered"
 else
-  warn "pm2 process 'jtg-panel' not found. Restart manually with: pm2 restart jtg-panel --update-env"
+  warn "pm2 process 'gg-panel' not found. Restart manually with: pm2 restart gg-panel --update-env"
 fi
 
 ok "Update finished successfully"

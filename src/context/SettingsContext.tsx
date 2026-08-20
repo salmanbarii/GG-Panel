@@ -17,7 +17,7 @@ import { api } from '@/lib/api';
  */
 
 const FALLBACK: PanelSettings = {
-  panelName: 'JTG Panel',
+  panelName: 'GG Panel',
   panelLogo: '',
   panelBackgroundImage: '',
   panelBackgroundBlur: 8,
@@ -81,7 +81,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     applyTheme(settings.theme);
-    document.title = settings.panelName || 'JTG Panel';
+    document.title = settings.panelName || 'GG Panel';
   }, [settings.theme, settings.panelName]);
 
   const saveSettings = useCallback(async (patch: Partial<PanelSettings>) => {
